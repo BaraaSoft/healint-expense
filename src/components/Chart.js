@@ -3,9 +3,9 @@ import {VictoryLine,VictoryChart,VictoryTheme,VictoryLegend} from 'victory'
 
 const Chart = ()=>{
     return (
-        <div style={{height:520,width:420}} >
+        <div style={{height:480,width:410}} >
             <VictoryChart theme={VictoryTheme.material}  >
-            <VictoryLegend x={125} y={340}
+            <VictoryLegend x={125} y={332}
                 title="Expenses"
                 centerTitle
                 orientation="horizontal"
