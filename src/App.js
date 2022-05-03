@@ -1,6 +1,8 @@
 import './App.css';
 import 'antd/dist/antd.css';
-import { MainScreen} from './screens/Main.screen'
+import { MainScreen} from './screens/MainScreen';
+
+
 
 function App() {
   return (
