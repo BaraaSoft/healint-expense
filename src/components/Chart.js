@@ -44,7 +44,7 @@ const Chart = (props)=>{
     return (
         <div style={{height:490,width:800}} >
             <VictoryChart theme={VictoryTheme.material} height={440} width={800}  >
-            <VictoryLegend x={42} y={422}
+            <VictoryLegend x={160} y={422}
                 title="Expenses"
                 centerTitle
                 orientation="horizontal"

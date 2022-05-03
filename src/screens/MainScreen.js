@@ -19,7 +19,7 @@ const MainScreen = ()=>{
             <Layout  style={{height:'100vh',display:'flex',flexDirection:'column'}}>
                 <Header onAddExpense={()=>setShowExpenseModal(true)}/>  
                 <Layout style={{flex:1}}>
-                    <Content style={{display:'flex',justifyContent:'center',alignItems:'stretch',background:'white'}}>
+                    <Content style={{display:'flex',justifyContent:'center',alignItems:'stretch',background:'white',marginTop:1}}>
                         <Tabs defaultActiveKey="1" size="large" centered style={{background:'white',minWidth:600}}>
                             <TabPane tab="Chart" key="1">
                                 <Chart/>
@@ -30,7 +30,7 @@ const MainScreen = ()=>{
                         </Tabs>
                     </Content>
                 </Layout>
-                <Footer style={{height:'40px',textAlign:'center',width:'100%'}}>footer</Footer>
+                <Footer style={{height:8,textAlign:'center',width:'100%',marginBottom:16,color:'#777'}}>My Expense ©2022 Created by Baraa</Footer>
                 <NewExpenseScreen show={showExpenseModal} onVisibilityChange={(state)=>setShowExpenseModal(state)} />
             </Layout>
            
