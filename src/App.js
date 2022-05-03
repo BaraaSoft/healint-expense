@@ -1,4 +1,3 @@
-import './App.css';
 import 'antd/dist/antd.css';
 import { MainScreen} from './screens/MainScreen';
 
