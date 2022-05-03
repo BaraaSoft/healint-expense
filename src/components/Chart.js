@@ -1,5 +1,6 @@
 import React from 'react';
-import {VictoryLine,VictoryChart,VictoryTheme,VictoryLegend,VictoryAxis} from 'victory'
+import {VictoryLine,VictoryChart,VictoryTheme,VictoryLegend,VictoryAxis} from 'victory';
+import { connect } from 'react-redux';
 
 const xAxe = [
     "Jan","Feb","Mar",
@@ -8,7 +9,38 @@ const xAxe = [
     "Oct","Nov","Dec"
 ]
 
-const Chart = ()=>{
+
+const formateChartData = (expenseItems,cat)=>{
+    return expenseItems.filter((item)=> item.category == cat.title)
+            .map((item)=>({x:item.month,y:item.amount}))
+}
+
+const formateLegendData = (expenseCategories)=>{
+    return expenseCategories.map((cat)=>({ name: cat.title, symbol: { fill: cat.color } }))
+}
+
+const renderLine = (expenseCategories,expenseItems)=>{
+    return (
+        expenseCategories.map((cat)=>{
+            return (
+                <VictoryLine 
+                    key={cat.id}
+                    style={{
+                    data: { stroke: cat.color,strokeLinecap: "round",strokeWidth: 3},
+                    parent: { border: "2px solid #ccc"}
+                    }}
+                   
+                    categories={{ x: xAxe }}
+                    data={formateChartData(expenseItems,cat)}
+                    width={440}
+                />
+            )
+        })
+    )
+}
+
+const Chart = (props)=>{
+    const {expenses,expenseCategories} =  props;
     return (
         <div style={{height:490,width:800}} >
             <VictoryChart theme={VictoryTheme.material} height={440} width={800}  >
@@ -18,49 +50,19 @@ const Chart = ()=>{
                 orientation="horizontal"
                 gutter={20}
                 style={{ border: { stroke: "#e5e5e5"}, title: {fontSize: 12 },labels:{fontSize:8} }}
-                data={[
-                    { name: "One", symbol: { fill: "tomato" } },
-                    { name: "Two", symbol: { fill: "orange" } },
-                    { name: "Three", symbol: { fill: "gold" } }
-                ]}/>
-                <VictoryLine 
-                    style={{
-                    data: { stroke: "#c43a31",strokeLinecap: "round",strokeWidth: 3},
-                    parent: { border: "2px solid #ccc"}
-                    }}
-                   
-                    categories={{ x: xAxe }}
-                    data={[
-                        { x: 1, y: 2 },
-                        { x: 2, y: 3 },
-                        { x: 3, y: 5 },
-                        { x: 4, y: 4 },
-                        { x: 5, y: 7 }
-                    ]}
-                    width={440}
-                />
-                <VictoryLine
-                    style={{
-                    data: { stroke: "orange",strokeLinecap: "round",strokeWidth: 3, },
-                    parent: { border: "2px solid #ccc"}
-                    }}
-                   width={440}
-                    categories={{ x: xAxe }}
-                    data={[
-                        { x: 1, y: 4 },
-                        { x: 2, y: 19 },
-                        { x: 3, y: 3 },
-                        { x: 4, y: 3 },
-                        { x: 5, y: 7 }
-                    ]}
-                />
-               
+                data={formateLegendData(expenseCategories)}/>
+                {renderLine(expenseCategories,expenses)}
             </VictoryChart>
         </div>
     )
 }
 
-export default Chart
+
+const mapStateToProps = ({expenses,expenseCategories}) => {
+    return { expenses,expenseCategories }
+}
+
+export default connect(mapStateToProps,{})(Chart)
 
 
 
