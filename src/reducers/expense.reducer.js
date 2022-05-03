@@ -4,7 +4,7 @@ export const expenses = (state = [], action) => {
     switch (action.type) {
         case ActionType.AllExpenses:
             console.log("payload-->Reducer:",action.payload)
-            return action.payload
+            return [...state,action.payload]
         default:
             return state
     }
@@ -22,9 +22,9 @@ const InitExpenseCategories = [
 
 export const expenseCategories = (state = [...InitExpenseCategories], action) => {
     switch (action.type) {
-        case ActionType.AllExpenses:
+        case ActionType.AllExpenseCategories:
             console.log("payload-->Reducer:",action.payload)
-            return action.payload
+            return [...state,action.payload]
         default:
             return state
     }
