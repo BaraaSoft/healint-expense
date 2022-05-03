@@ -1,11 +1,18 @@
 import React from 'react';
-import {VictoryLine,VictoryChart,VictoryTheme,VictoryLegend} from 'victory'
+import {VictoryLine,VictoryChart,VictoryTheme,VictoryLegend,VictoryAxis} from 'victory'
+
+const xAxe = [
+    "Jan","Feb","Mar",
+    "Apr","May","Jun",
+    "Jul","Aug","Sept",
+    "Oct","Nov","Dec"
+]
 
 const Chart = ()=>{
     return (
-        <div style={{height:480,width:410}} >
-            <VictoryChart theme={VictoryTheme.material}  >
-            <VictoryLegend x={125} y={332}
+        <div style={{height:490,width:800}} >
+            <VictoryChart theme={VictoryTheme.material} height={440} width={800}  >
+            <VictoryLegend x={42} y={422}
                 title="Expenses"
                 centerTitle
                 orientation="horizontal"
@@ -21,7 +28,8 @@ const Chart = ()=>{
                     data: { stroke: "#c43a31",strokeLinecap: "round",strokeWidth: 3},
                     parent: { border: "2px solid #ccc"}
                     }}
-
+                   
+                    categories={{ x: xAxe }}
                     data={[
                         { x: 1, y: 2 },
                         { x: 2, y: 3 },
@@ -29,13 +37,15 @@ const Chart = ()=>{
                         { x: 4, y: 4 },
                         { x: 5, y: 7 }
                     ]}
+                    width={440}
                 />
                 <VictoryLine
                     style={{
                     data: { stroke: "orange",strokeLinecap: "round",strokeWidth: 3, },
                     parent: { border: "2px solid #ccc"}
                     }}
-                    categories={{ x: ["dogs", "cats", "mice","bara","Mirghani"] }}
+                   width={440}
+                    categories={{ x: xAxe }}
                     data={[
                         { x: 1, y: 4 },
                         { x: 2, y: 19 },
@@ -44,6 +54,7 @@ const Chart = ()=>{
                         { x: 5, y: 7 }
                     ]}
                 />
+               
             </VictoryChart>
         </div>
     )
