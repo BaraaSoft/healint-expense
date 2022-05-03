@@ -24,6 +24,11 @@ const NewExpenseScreen = (props)=>{
         addExpense(expenseItem)
         setExpenseItem({})
     }
+
+    const onCancel = ()=>{
+        setExpenseItem({});
+        onVisibilityChange(false);
+    }
     const onExpenseTypeChange = (e)=>{
         setExpenseItem({
             ...expenseItem,
@@ -62,8 +67,8 @@ const NewExpenseScreen = (props)=>{
                 okText="ADD"
                 okButtonProps={{disabled:disableAddButton}}
                 visible={show}
-                onOk={() => onAddExpense() }
-                onCancel={() => {setExpenseItem({});onVisibilityChange(false);}}
+                onOk={onAddExpense}
+                onCancel={onCancel}
             >
                 <Input
                     onChange={onExpenseTypeChange}
