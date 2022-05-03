@@ -9,19 +9,16 @@ import moment from 'moment';
 const { Option } = Select;
 
 const NewExpenseScreen = (props)=>{
-    const {show,expenseCategories,addExpense} = props
-    const [visible,setVisible] = useState(show);
+    const {show,expenseCategories,addExpense,onVisibilityChange} = props
     const [expenseItem,setExpenseItem] = useState({});
-    const [disableAddButton,setDisableAddButton] = useState(true)
+    const [disableAddButton,setDisableAddButton] = useState(show)
 
     useEffect(()=>{
         const {category,date,amount,expenseType} = expenseItem;
         if(category && date && amount && expenseType) setDisableAddButton(false)
         else setDisableAddButton(true)
     },[expenseItem])
-    useEffect(()=>{
-        setVisible(show)
-    },[show])
+   
     
     const onAddExpense = ()=>{
         addExpense(expenseItem)
@@ -64,9 +61,9 @@ const NewExpenseScreen = (props)=>{
                 style={{ top: 20 }}
                 okText="ADD"
                 okButtonProps={{disabled:disableAddButton}}
-                visible={visible}
+                visible={show}
                 onOk={() => onAddExpense() }
-                onCancel={() => {setExpenseItem({});setVisible(false);}}
+                onCancel={() => {setExpenseItem({});onVisibilityChange(false);}}
             >
                 <Input
                     onChange={onExpenseTypeChange}

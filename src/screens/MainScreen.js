@@ -17,7 +17,7 @@ const MainScreen = ()=>{
     return(
         <>
             <Layout  style={{height:'100vh',display:'flex',flexDirection:'column'}}>
-                <Header onAddExpense={()=>setShowExpenseModal((show)=>!show)}/>  
+                <Header onAddExpense={()=>setShowExpenseModal(true)}/>  
                 <Layout style={{flex:1}}>
                     <Content style={{display:'flex',justifyContent:'center',alignItems:'stretch',background:'white'}}>
                         <Tabs defaultActiveKey="1" size="large" centered style={{background:'white',minWidth:600}}>
@@ -30,8 +30,8 @@ const MainScreen = ()=>{
                         </Tabs>
                     </Content>
                 </Layout>
-                <Footer style={{height:'40px'}}>footer</Footer>
-                <NewExpenseScreen show={showExpenseModal} />
+                <Footer style={{height:'40px',textAlign:'center',width:'100%'}}>footer</Footer>
+                <NewExpenseScreen show={showExpenseModal} onVisibilityChange={(state)=>setShowExpenseModal(state)} />
             </Layout>
            
         </>
