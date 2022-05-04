@@ -4,7 +4,12 @@ import Header from '../components/Header';
 import Chart from '../components/Chart'
 import NewExpenseScreen from './NewExpenseScreen';
 import Table from '../components/Table';
+
+import { MainLayout,MainContent,AppTab,MainFooter } from './MainScreen.style';
+
 const {Content, Footer,Sider } = Layout;
+
+
 
 const { TabPane } = Tabs;
 
@@ -17,23 +22,23 @@ const MainScreen = ()=>{
 
     return(
         <>
-            <Layout  style={{height:'100vh',display:'flex',flexDirection:'column'}}>
+            <MainLayout>
                 <Header onAddExpense={()=>setShowExpenseModal(true)}/>  
                 <Layout style={{flex:1}}>
-                    <Content style={{display:'flex',justifyContent:'center',alignItems:'stretch',background:'white',marginTop:1}}>
-                        <Tabs defaultActiveKey="1" size="large" centered style={{background:'white',minWidth:600}}>
+                    <MainContent>
+                        <AppTab defaultActiveKey="1" size="large" centered>
                             <TabPane tab="Chart" key="1">
                                 <Chart/>
                             </TabPane>
                             <TabPane tab="Table" key="2">
                                 <Table/>
                             </TabPane>
-                        </Tabs>
-                    </Content>
+                        </AppTab>
+                    </MainContent>
                 </Layout>
-                <Footer style={{height:8,textAlign:'center',width:'100%',marginBottom:16,color:'#777'}}>My Expense ©2022 Created by Baraa</Footer>
+                <MainFooter>My Expense ©2022 Created by Baraa</MainFooter>
                 <NewExpenseScreen show={showExpenseModal} onVisibilityChange={(state)=>setShowExpenseModal(state)} />
-            </Layout>
+            </MainLayout>
            
         </>
     )
