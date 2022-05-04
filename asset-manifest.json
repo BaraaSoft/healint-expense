@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/healint-expense/static/css/main.df05b1f1.css",
+    "main.js": "/healint-expense/static/js/main.ea461d5e.js",
+    "index.html": "/healint-expense/index.html",
+    "main.df05b1f1.css.map": "/healint-expense/static/css/main.df05b1f1.css.map",
+    "main.ea461d5e.js.map": "/healint-expense/static/js/main.ea461d5e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.df05b1f1.css",
+    "static/js/main.ea461d5e.js"
+  ]
+}
