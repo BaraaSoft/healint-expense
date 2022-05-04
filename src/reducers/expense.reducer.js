@@ -1,14 +1,5 @@
-import {ActionType} from '../actions'
-
-export const expenses = (state = [], action) => {
-    switch (action.type) {
-        case ActionType.AllExpenses:
-            console.log("payload-->Reducer:",action.payload)
-            return [...state,action.payload]
-        default:
-            return state
-    }
-}
+import {ActionType} from '../actions';
+import {expensesData as expensesMockData} from '../util/mockData'
 
 const InitExpenseCategories = [
     {id:1,title:"Groceries",color:"#f56a00"},
@@ -20,10 +11,20 @@ const InitExpenseCategories = [
     {id:7,title:'Housing',color:'#ffbf00'}
 ]
 
+
+export const expenses = (state = [...expensesMockData], action) => {
+    switch (action.type) {
+        case ActionType.AllExpenses:
+            // console.log("payload-->Reducer:",action.payload)
+            return [...state,action.payload]
+        default:
+            return state
+    }
+}
 export const expenseCategories = (state = [...InitExpenseCategories], action) => {
     switch (action.type) {
         case ActionType.AllExpenseCategories:
-            console.log("payload-->Reducer:",action.payload)
+            // console.log("payload-->Reducer:",action.payload)
             return [...state,action.payload]
         default:
             return state
