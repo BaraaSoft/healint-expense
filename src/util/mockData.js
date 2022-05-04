@@ -49,6 +49,14 @@ export const expensesData = [
         month: 4,
         year: 2022,
     },
+    {
+        amount: 600,
+        category: "Utilities",
+        date: "2022-04-04T01:13:50+02:00",
+        expenseType: "Electricity",
+        month: 4,
+        year: 2022,
+    },
 
       {
         amount: 1350,

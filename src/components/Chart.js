@@ -10,9 +10,23 @@ const xAxe = [
 ]
 
 
-const formateChartData = (expenseItems,cat)=>{
-    return expenseItems.filter((item)=> item.category == cat.title)
+const formateChartData = (expenseItems,cat,year)=>{
+
+    const res =  expenseItems.filter((item)=> item.category == cat.title)
+            .filter((item)=> item.year == year)
             .map((item)=>({x:item.month,y:item.amount}))
+            .reduce((obj,curr)=>{
+                if(obj[curr.x]){
+                    obj[curr.x] = {...obj[curr.x], y:obj[curr.x].y+curr.y}
+                }else{
+                    obj[curr.x] = {x:curr.x,y:curr.y}
+                }
+                return obj
+            },{})
+
+    console.log({res:Object.values(res)})
+
+    return Object.values(res);
 }
 
 const formateLegendData = (expenseCategories)=>{
@@ -31,7 +45,7 @@ const renderLine = (expenseCategories,expenseItems)=>{
                     }}
                    
                     categories={{ x: xAxe }}
-                    data={formateChartData(expenseItems,cat)}
+                    data={formateChartData(expenseItems,cat,2022)}
                     width={440}
                 />
             )
@@ -42,14 +56,14 @@ const renderLine = (expenseCategories,expenseItems)=>{
 const Chart = (props)=>{
     const {expenses,expenseCategories} =  props;
     return (
-        <div style={{height:490,width:800}} >
+        <div style={{height:520,width:800}} >
             <VictoryChart theme={VictoryTheme.material} height={440} width={800}  >
-            <VictoryLegend x={160} y={422}
+            <VictoryLegend x={100} y={424}
                 title="Expenses"
                 centerTitle
                 orientation="horizontal"
                 gutter={20}
-                style={{ border: { stroke: "#e5e5e5"}, title: {fontSize: 12 },labels:{fontSize:8} }}
+                style={{ border: { stroke: "#e5e5e5"}, title: {fontSize: 14 },labels:{fontSize:11} }}
                 data={formateLegendData(expenseCategories)}/>
                 {renderLine(expenseCategories,expenses)}
             </VictoryChart>
