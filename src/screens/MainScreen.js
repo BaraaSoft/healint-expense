@@ -3,6 +3,7 @@ import {Layout,Tabs} from 'antd';
 import Header from '../components/Header';
 import Chart from '../components/Chart'
 import NewExpenseScreen from './NewExpenseScreen';
+import Table from '../components/Table';
 const {Content, Footer,Sider } = Layout;
 
 const { TabPane } = Tabs;
@@ -25,7 +26,7 @@ const MainScreen = ()=>{
                                 <Chart/>
                             </TabPane>
                             <TabPane tab="Table" key="2">
-                                Content of Tab Pane 2
+                                <Table/>
                             </TabPane>
                         </Tabs>
                     </Content>
