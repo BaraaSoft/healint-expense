@@ -18,9 +18,9 @@ const columns = [
         dataIndex:'date',
         key:'Date',
         sorter: (a, b) =>{
-                if(moment(a.date) > moment(b.date)) return 1
-                else if(moment(a.date) == moment(b.date)) return 0
+                if(moment(a.date) >= moment(b.date)) return 1
                 else return -1
+                
             },
         }
 ]
