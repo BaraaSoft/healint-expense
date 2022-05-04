@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react';
-import { Modal, Button } from 'antd';
 import { connect } from 'react-redux';
 import {addExpense} from '../actions/index';
-import { Input, Tooltip ,DatePicker,Select,InputNumber} from 'antd';
+import { Modal,Input, Tooltip ,DatePicker,Select,InputNumber} from 'antd';
 import { InfoCircleOutlined, ShoppingCartOutlined,DollarOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import { ExpenseCategorySelect,ItemRow } from './NewExpenseScreen.style';
 
 const { Option } = Select;
 
@@ -81,20 +81,20 @@ const NewExpenseScreen = (props)=>{
                         </Tooltip>
                     }/>
                 <div>
-                    <Select placeholder="choose expense category" 
+                    <ExpenseCategorySelect placeholder="choose expense category" 
                         value={expenseItem.category}
-                        style={{width:'60%',marginTop:24}} onChange={onExpenseCategoryChange}>
+                        onChange={onExpenseCategoryChange}>
                         {expenseCategories.map((cat)=>{
                             return(
                                 <Option key={cat.id} value={cat.title}>{cat.title}</Option>
                             )
                         })}
-                    </Select>
+                    </ExpenseCategorySelect>
                     <DatePicker value={expenseItem.date?moment(expenseItem.date):null} picker="month" bordered={true} size="middle" style={{width:'40%'}} onSelect={onSelectExpenseDate} />
                 </div>
-                <div style={{width:'100%',marginTop:24}} >
+                <ItemRow>
                     <InputNumber placeholder="enter expense amount" value={expenseItem?.amount} style={{width:'100%'}} addonAfter={<DollarOutlined />} onChange={onExpenseAmountChange}  />
-                </div>
+                </ItemRow>
             </Modal>
         </>
     )
